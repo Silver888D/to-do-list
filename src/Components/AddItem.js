@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const AddItem = ({handleSubmit,toDoInput,setToDoInput}) => {
     return (
     <form onSubmit={handleSubmit}><label>

@@ -1,16 +1,19 @@
-import { useState } from 'react';
+
 import checked from '../images/checked.svg';
 import unchecked from '../images/unchecked.svg';
 
-const ListItem = ({ toDo, handleClick}) => {
-    const [due, setDue] = useState(false);
+const ListItem = ({ toDo, handleClick, index, setItems, items }) => {
+    const doneHandler = () => {let doneToDos = [...items];
+        doneToDos[index].done = !doneToDos[index].done;
+        setItems(doneToDos);}
     return (<div>
-        {due?
-        (<h2><img src={checked} alt='checked'></img>{toDo}</h2>)
+        {toDo.done ?
+        (<h2 style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
+        <img style={{backgroundColor: 'green'}} src={checked} alt='checked'/>{toDo.toDo}</h2>)
         :
-        (<h2><img src={unchecked} alt='unchecked'></img>{toDo}</h2>)}
-        <button onClick={handleClick}>Remove</button>
-        <button onClick={() => setDue(!due)}>Done</button>
+        (<h2><img src={unchecked} alt='unchecked'/>{toDo.toDo}</h2>)}
+        <button onClick={()=> handleClick(index)}>Remove</button>
+        <button onClick={doneHandler}>Done</button>
         </div>);
         };
 

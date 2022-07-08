@@ -13,7 +13,7 @@ function App() {
         let storedItems = [...items]; storedItems.splice(index, 1); setItems(storedItems);};
         
         const handleSubmit = (e) => {e.preventDefault();
-            setItems([...items,{toDo: toDoInput},]);
+            setItems([...items,{toDo: toDoInput, done:false},]);
             setToDoInput('');};
   return (
     <div className='App'>
@@ -24,8 +24,9 @@ function App() {
             setToDoInput={setToDoInput}></AddItem></div>
       <div className='List-Box'>
         <div className='List-Item'>{items.map((item, index) => {
-                return (<ListItem toDo={ item.toDo }
-                  key={ index } handleClick={ () => handleClick(index)}/>);})}</div>
+                return (<ListItem toDo={ item} key={ index } index={index}
+                  handleClick={handleClick} setItems={setItems}
+                  items={items}/>);})}</div>
         
       </div>
      </div>
